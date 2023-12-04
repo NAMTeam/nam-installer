@@ -1,1 +1,11 @@
 *.class
+target/
+/.bsp/
+
+*.dat
+*.SC4Model
+*.SC4Desc
+*.SC4Lot
+
+*.jar
+*.zip
