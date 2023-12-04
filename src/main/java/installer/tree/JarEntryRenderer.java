@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.util.Map;
 
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -35,9 +36,12 @@ public class JarEntryRenderer {
   private static int defaultHeight;
 
   static {
-    int h1 = UIManager.getIcon("Tree.leafIcon").getIconHeight();
-    int h2 = UIManager.getIcon("Tree.openIcon").getIconHeight();
-    int h3 = UIManager.getIcon("Tree.closedIcon").getIconHeight();
+    Icon i1 = UIManager.getIcon("Tree.leafIcon");
+    Icon i2 = UIManager.getIcon("Tree.openIcon");
+    Icon i3 = UIManager.getIcon("Tree.closedIcon");
+    int h1 = i1 == null ? 0 : i1.getIconHeight();
+    int h2 = i2 == null ? 0 : i2.getIconHeight();
+    int h3 = i3 == null ? 0 : i3.getIconHeight();
     defaultHeight = Math.max(Math.max(h1, h2),h3);
   }
 
