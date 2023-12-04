@@ -1,9 +1,9 @@
  Welcome to the ${appname} installer application!
- 
- Please read the following carefully, then select 
+
+ Please read the following carefully, then select
  "I agree with these conditions" to continue.
 
- FAILURE TO READ MAY RESULT IN CRASH TO DESKTOP SITUATIONS WHEN LOADING 
+ FAILURE TO READ MAY RESULT IN CRASH TO DESKTOP SITUATIONS WHEN LOADING
  CITY TILES.
 
 This mod is NOT COMPATIBLE with the EA App/Origin editions of SimCity 4 Deluxe (as sold on EA.com, and also available via
@@ -12,15 +12,15 @@ Version 1.1.638 at the minimum, and the EA App/Origin versions cannot be upgrade
 
 Additionally, if you are upgrading from a previous version of the NAM, make sure to REMOVE YOUR PREVIOUS NAM INSTALLATION FROM THE PLUGINS FOLDER FIRST.  The Cleanup/Cleanitol function is not designed at present to remove full NAM installations, and failure to remove old NAM files may cause conflicts.
  ---------------------------------------------------------------------------------------------
- The default installation of the NAM is designed for use on 64-bit operating 
- systems, and as such, requires that SimCity 4.exe be patched with the 
- enclosed 4GB Patch (4gb_patch.exe).  FAILURE TO APPLY THE 4GB PATCH PROPERLY 
+ The default installation of the NAM is designed for use on 64-bit operating
+ systems, and as such, requires that SimCity 4.exe be patched with the
+ enclosed 4GB Patch (4gb_patch.exe).  FAILURE TO APPLY THE 4GB PATCH PROPERLY
  WILL RESULT IN THE GAME CRASHING TO DESKTOP UPON LOADING A CITY TILE.  Users  with 32-bit operating systems (including Windows XP) or lesser amounts of  RAM should select the "Low RAM/No RHW" option in the installer, or manually  run the Controller Compiler and install a smaller feature set.  For more   details, see the "0-read-first.html" file included in the download package.
- 
+
  Users download, install, and run this software completely and solely
- at their own risk. Maxis, Electronic Arts,the creators, and its 
+ at their own risk. Maxis, Electronic Arts,the creators, and its
  individual contributors are not responsible for any errors, crashes,
- problems, or any other issue that you may have if you have downloaded 
+ problems, or any other issue that you may have if you have downloaded
  and applied this software to your game. Players should also expect
  that any future patches and/or expansion packs and SimCityscape may not
  function properly with the game if you have downloaded this  software and

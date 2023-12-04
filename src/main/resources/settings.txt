@@ -1,19 +1,19 @@
 
-# this is the configuration file for the installer. 
+# this is the configuration file for the installer.
 # DO NOT change the name of this file, the installer needs this to be 'settings.txt'
 
 # ------------------------------------------------ #
-# general settings 
+# general settings
 # ------------------------------------------------ #
 
-# - 'version' and 'appname' are not essential, but are defined here as a example to show how you can 
+# - 'version' and 'appname' are not essential, but are defined here as a example to show how you can
 #    reference other defined symbols in strings and description files (such as licence.txt)
 #    you may also define your own symbols to be used this way for convenience
 # - 'apptitle' will show on application frame (if 'decorate' is TRUE) and windows taskbar
 # -  default installation folder is MY_DOCUMENTS/Simcity 4/Plugins/${defaultfolder}
 # - 'width' and 'height' do NOT include sidebar (if sidebar is longer than 'height', sidebar height is used)
 # -  set 'decorate' to TRUE/FALSE to show/hide default application frame
-# - 'splash_ms' is the time the splash message is showing, in milliseconds. If there is no "splash.jpg" file, 
+# - 'splash_ms' is the time the splash message is showing, in milliseconds. If there is no "splash.jpg" file,
 #    this property is ignored. The filename "splash.jpg" is hardcoded so it can be loaded while this file is being compiled.
 
 version        = 47
@@ -83,7 +83,7 @@ depends.label    = Scan for dependencies (GREEN = dependency found)
 # ------------------------------------------------ #
 # color settings
 # ------------------------------------------------ #
-# format: Red,Green,Blue 
+# format: Red,Green,Blue
 
 black             = 0,0,0
 white             = 255,255,255
@@ -98,7 +98,7 @@ textfield.back    = 218,231,243
 buttons.text      = ${black}
 
 # ------------------------------------------------ #
-# auxiliary files 
+# auxiliary files
 # ------------------------------------------------ #
 
 license       = license

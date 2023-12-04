@@ -60,14 +60,14 @@ public class OS {
   public static boolean isWindowsVista() {
     return osIsWindowsVista;
   }
-  
+
   /**
    * @return true if this VM is running on a Linux distribution
    */
   public static boolean isLinux() {
     return osIsLinux;
   }
-  
+
   /**
    * @return true if the VM is running Windows and the Java
    *         application is rendered using XP Visual Styles.
@@ -96,8 +96,8 @@ public class OS {
    * <li>it looks for a property name "win.xpstyle.name" in UIManager and if not found
    * <li>it queries the win.xpstyle.colorName desktop property ({@link Toolkit#getDesktopProperty(java.lang.String)})
    * </ul>
-   * 
-   * @return the name of the current Windows visual style if any. 
+   *
+   * @return the name of the current Windows visual style if any.
    */
   public static String getWindowsVisualStyle() {
     String style = UIManager.getString("win.xpstyle.name");
@@ -110,5 +110,5 @@ public class OS {
     }
     return style;
   }
-  
+
 }

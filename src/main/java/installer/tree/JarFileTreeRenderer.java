@@ -14,14 +14,14 @@ import javax.swing.tree.TreeCellRenderer;
 
 
 public class JarFileTreeRenderer implements TreeCellRenderer  {
-	
-	@Override
-	public Component getTreeCellRendererComponent(JTree tree, Object value,
-			boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
-		if (value != null && value instanceof JarEntryNode){
-			return (((JarEntryNode)value).getRenderer().render(selected, expanded, hasFocus));
-		}
-		return null;
-	}
+
+  @Override
+  public Component getTreeCellRendererComponent(JTree tree, Object value,
+      boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+    if (value != null && value instanceof JarEntryNode){
+      return (((JarEntryNode)value).getRenderer().render(selected, expanded, hasFocus));
+    }
+    return null;
+  }
 
 }

@@ -22,196 +22,196 @@ import javax.swing.SwingConstants;
 
 public class CleanitolPanel extends Box implements ActionListener, FileSearcher {
 
-	private JButton startButton, deleteButton, backupButton;
-	private StringBuffer text;
-	private JTextPane textPane;
+  private JButton startButton, deleteButton, backupButton;
+  private StringBuffer text;
+  private JTextPane textPane;
 
-	public CleanitolPanel(){
-		this(true);
-	}
+  public CleanitolPanel(){
+    this(true);
+  }
 
-	public CleanitolPanel(boolean withStartButton) {
-		super(SwingConstants.VERTICAL);
+  public CleanitolPanel(boolean withStartButton) {
+    super(SwingConstants.VERTICAL);
 
-		startButton = new JButton(Settings.getString("cleanitol.start"));
-		if (withStartButton){
-			startButton.setOpaque(false);
-			startButton.addActionListener(this);
-			Box startButtonBox = Box.createHorizontalBox();
-			startButtonBox.add(Box.createRigidArea(new Dimension(1,2)));
-			startButtonBox.add(startButton);
-			startButtonBox.add(Box.createHorizontalGlue());
+    startButton = new JButton(Settings.getString("cleanitol.start"));
+    if (withStartButton){
+      startButton.setOpaque(false);
+      startButton.addActionListener(this);
+      Box startButtonBox = Box.createHorizontalBox();
+      startButtonBox.add(Box.createRigidArea(new Dimension(1,2)));
+      startButtonBox.add(startButton);
+      startButtonBox.add(Box.createHorizontalGlue());
 
-			this.add(Box.createVerticalStrut(2));
-			this.add(startButtonBox);
-		}
+      this.add(Box.createVerticalStrut(2));
+      this.add(startButtonBox);
+    }
 
-		text = new StringBuffer();
-		textPane = new JTextPane();
-		textPane.setEditable(false);
-		//textPane.setOpaque(false);
-		textPane.setForeground(Settings.getColor("textfield.text"));
-		textPane.setBackground(Settings.getColor("textfield.back"));
+    text = new StringBuffer();
+    textPane = new JTextPane();
+    textPane.setEditable(false);
+    //textPane.setOpaque(false);
+    textPane.setForeground(Settings.getColor("textfield.text"));
+    textPane.setBackground(Settings.getColor("textfield.back"));
 
-		JPanel p = new JPanel();
-		p.setOpaque(false);
-		p.add(textPane);
+    JPanel p = new JPanel();
+    p.setOpaque(false);
+    p.add(textPane);
 
-		JScrollPane scroll = new JScrollPane();
-		scroll.getViewport().add(p);
-		scroll.getViewport().setBackground(Settings.getColor("textfield.back"));
-		//scroll.getViewport().setOpaque(false);
-		scroll.setPreferredSize(new Dimension(1000,1000));
-		scroll.setOpaque(false);
+    JScrollPane scroll = new JScrollPane();
+    scroll.getViewport().add(p);
+    scroll.getViewport().setBackground(Settings.getColor("textfield.back"));
+    //scroll.getViewport().setOpaque(false);
+    scroll.setPreferredSize(new Dimension(1000,1000));
+    scroll.setOpaque(false);
 
-		Box scrollBox = Box.createHorizontalBox();
-		scrollBox.add(Box.createRigidArea(new Dimension(1,2)));
-		scrollBox.add(scroll);
-		scrollBox.setOpaque(false);		
+    Box scrollBox = Box.createHorizontalBox();
+    scrollBox.add(Box.createRigidArea(new Dimension(1,2)));
+    scrollBox.add(scroll);
+    scrollBox.setOpaque(false);
 
-		deleteButton = new JButton(Settings.getString("cleanitol.delete"));
-		deleteButton.setOpaque(false);
-		deleteButton.addActionListener(this);
-		deleteButton.setEnabled(false);
-		backupButton = new JButton(Settings.getString("cleanitol.backup"));
-		backupButton.setOpaque(false);
-		backupButton.addActionListener(this);
-		backupButton.setEnabled(false);
+    deleteButton = new JButton(Settings.getString("cleanitol.delete"));
+    deleteButton.setOpaque(false);
+    deleteButton.addActionListener(this);
+    deleteButton.setEnabled(false);
+    backupButton = new JButton(Settings.getString("cleanitol.backup"));
+    backupButton.setOpaque(false);
+    backupButton.addActionListener(this);
+    backupButton.setEnabled(false);
 
-		Box actionBox = Box.createHorizontalBox();
-		actionBox.add(Box.createHorizontalStrut(1));
-		actionBox.add(deleteButton);
-		actionBox.add(Box.createHorizontalStrut(1));
-		actionBox.add(backupButton);
-		actionBox.add(Box.createHorizontalStrut(3));
-		//actionBox.add(new JLabel("C:\\Users\\Joris\\Documents\\Simcity 4\\Backup_Plugins\\"));
-		actionBox.add(Box.createHorizontalGlue());
+    Box actionBox = Box.createHorizontalBox();
+    actionBox.add(Box.createHorizontalStrut(1));
+    actionBox.add(deleteButton);
+    actionBox.add(Box.createHorizontalStrut(1));
+    actionBox.add(backupButton);
+    actionBox.add(Box.createHorizontalStrut(3));
+    //actionBox.add(new JLabel("C:\\Users\\Joris\\Documents\\Simcity 4\\Backup_Plugins\\"));
+    actionBox.add(Box.createHorizontalGlue());
 
-		this.add(Box.createVerticalStrut(2));
-		this.add(scrollBox);
-		this.add(Box.createVerticalStrut(2));
-		this.add(actionBox);
-	}
+    this.add(Box.createVerticalStrut(2));
+    this.add(scrollBox);
+    this.add(Box.createVerticalStrut(2));
+    this.add(actionBox);
+  }
 
-	private List<File> found;
+  private List<File> found;
 
-	public void found(File f){
-		found.add(f);
-		text.append(f.toString());
-		text.append('\n');
-		textPane.setText(text.toString());
-	}
+  public void found(File f){
+    found.add(f);
+    text.append(f.toString());
+    text.append('\n');
+    textPane.setText(text.toString());
+  }
 
-	private int delete(){
-		int t = 0;
-		if (found != null){
-			List<File> deleted = new ArrayList<File>();
-			for (File f : found){
-				if (f.delete()){
-					t++;
-					deleted.add(f);
-				}
-			}
-			found.removeAll(deleted);
-		}
-		return t;
-	}
+  private int delete(){
+    int t = 0;
+    if (found != null){
+      List<File> deleted = new ArrayList<File>();
+      for (File f : found){
+        if (f.delete()){
+          t++;
+          deleted.add(f);
+        }
+      }
+      found.removeAll(deleted);
+    }
+    return t;
+  }
 
-	private int move(){
-		int t = 0;
-		if (found != null){
-			List<File> moved = new ArrayList<File>();
-			File backupdir = new File(Settings.CLEANITOL_BACKUP);
-			if (!backupdir.exists()){
-				backupdir.mkdir();
-			}
-			for(File f: found){
-				File newFile = new File(Settings.CLEANITOL_BACKUP + "\\" + f.getName());
-				if (!newFile.exists()){
-					if (f.renameTo(newFile)){
-						t++;
-						moved.add(f);
-					}
-				}
-			}
-			found.removeAll(moved);
-		}		
-		return t;
-	}
+  private int move(){
+    int t = 0;
+    if (found != null){
+      List<File> moved = new ArrayList<File>();
+      File backupdir = new File(Settings.CLEANITOL_BACKUP);
+      if (!backupdir.exists()){
+        backupdir.mkdir();
+      }
+      for(File f: found){
+        File newFile = new File(Settings.CLEANITOL_BACKUP + "\\" + f.getName());
+        if (!newFile.exists()){
+          if (f.renameTo(newFile)){
+            t++;
+            moved.add(f);
+          }
+        }
+      }
+      found.removeAll(moved);
+    }
+    return t;
+  }
 
-	private void error(){
-		if (found != null && found.size() > 0){
-			text.append("\n-------------------------------------------\n");
-			text.append(Settings.getString("cleanitol.error"));
-			text.append("\n");
-			for(File f: found){
-				text.append(f.getPath());
-				text.append("\n");
-			}
-			textPane.setText(text.toString());
-		}
-	}
+  private void error(){
+    if (found != null && found.size() > 0){
+      text.append("\n-------------------------------------------\n");
+      text.append(Settings.getString("cleanitol.error"));
+      text.append("\n");
+      for(File f: found){
+        text.append(f.getPath());
+        text.append("\n");
+      }
+      textPane.setText(text.toString());
+    }
+  }
 
-	private Scanner scanner;
+  private Scanner scanner;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource().equals(backupButton)){
-			int n = found.size();
-			int m = move();
-			if (m < n){
-				error();
-			}
-			JOptionPane.showMessageDialog(this, m + " " + Settings.getString("cleanitol.backup.popup") 
-					+ "\n" + Settings.CLEANITOL_BACKUP);
-			backupButton.setEnabled(false);
-			deleteButton.setEnabled(false);
-		} else if (e.getSource().equals(deleteButton)){
-			int n = found.size();
-			int d = delete();
-			if (d < n){
-				error();
-			}
-			JOptionPane.showMessageDialog(this, d  + " " + Settings.getString("cleanitol.delete.popup"));
-			backupButton.setEnabled(false);
-			deleteButton.setEnabled(false);
-		} else if (e.getSource().equals(startButton)){
-			if (e.getActionCommand().equals(Settings.getString("cleanitol.start"))){
-				File root = new File(Settings.PLUGINS_FOLDER);	
-				scanner = new Scanner(Settings.cleanitolFiles, this);
-				scanner.startScan(root);
-			} else if (e.getActionCommand().equals(Settings.getString("cleanitol.stop"))){
-				scanner.stopScan(); 
-				startButton.setText(Settings.getString("cleanitol.start"));
-			}
-		}
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource().equals(backupButton)){
+      int n = found.size();
+      int m = move();
+      if (m < n){
+        error();
+      }
+      JOptionPane.showMessageDialog(this, m + " " + Settings.getString("cleanitol.backup.popup")
+          + "\n" + Settings.CLEANITOL_BACKUP);
+      backupButton.setEnabled(false);
+      deleteButton.setEnabled(false);
+    } else if (e.getSource().equals(deleteButton)){
+      int n = found.size();
+      int d = delete();
+      if (d < n){
+        error();
+      }
+      JOptionPane.showMessageDialog(this, d  + " " + Settings.getString("cleanitol.delete.popup"));
+      backupButton.setEnabled(false);
+      deleteButton.setEnabled(false);
+    } else if (e.getSource().equals(startButton)){
+      if (e.getActionCommand().equals(Settings.getString("cleanitol.start"))){
+        File root = new File(Settings.PLUGINS_FOLDER);
+        scanner = new Scanner(Settings.cleanitolFiles, this);
+        scanner.startScan(root);
+      } else if (e.getActionCommand().equals(Settings.getString("cleanitol.stop"))){
+        scanner.stopScan();
+        startButton.setText(Settings.getString("cleanitol.start"));
+      }
+    }
 
-	}
+  }
 
-	@Override
-	public void searchAborted() {
-		startButton.setText(Settings.getString("cleanitol.start"));
-	}
+  @Override
+  public void searchAborted() {
+    startButton.setText(Settings.getString("cleanitol.start"));
+  }
 
-	@Override
-	public void searchFinished() {
-		startButton.setText(Settings.getString("cleanitol.done"));
-		startButton.setEnabled(false);
-		text.append("-------------------------------------------\n");
-		text.append(found.size() + " " + Settings.getString("cleanitol.found") + "\n");
-		if (found.size() > 0){
-			text.append(Settings.getString("cleanitol.msg"));
-			deleteButton.setEnabled(true);
-			backupButton.setEnabled(true);
-		}
-		textPane.setText(text.toString());		
-	}
+  @Override
+  public void searchFinished() {
+    startButton.setText(Settings.getString("cleanitol.done"));
+    startButton.setEnabled(false);
+    text.append("-------------------------------------------\n");
+    text.append(found.size() + " " + Settings.getString("cleanitol.found") + "\n");
+    if (found.size() > 0){
+      text.append(Settings.getString("cleanitol.msg"));
+      deleteButton.setEnabled(true);
+      backupButton.setEnabled(true);
+    }
+    textPane.setText(text.toString());
+  }
 
-	@Override
-	public void searchStarted() {
-		found = new Vector<File>();
-		startButton.setText(Settings.getString("cleanitol.stop"));		
-	}
+  @Override
+  public void searchStarted() {
+    found = new Vector<File>();
+    startButton.setText(Settings.getString("cleanitol.stop"));
+  }
 
 
 }
