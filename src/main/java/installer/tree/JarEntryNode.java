@@ -112,7 +112,7 @@ public class JarEntryNode extends DefaultMutableTreeNode  {
         parent.icon = new ImageIcon(ImageIO.read(file.getInputStream(entry)));
       } else if (!name.endsWith(".txt")){
         if (entry.isDirectory()){
-          if (name.startsWith("$")){
+          if (name.startsWith("@")){  // originally this was the `$` character
             index = Integer.parseInt(name.substring(1,2));
             name = name.substring(2);
           }
