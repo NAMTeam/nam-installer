@@ -110,8 +110,10 @@ public class InstallProgressPanel extends Box implements ActionListener {
   }
 
   private void append(String str){
-    text.append(str);
-    text.append("\n");
+	//changes listing of progress from top-down to bottom-up, allowing user to see when things are finished without scrolling down. -Tarkus 20240111
+	text.insert(0, str + "\n");
+    //text.append(str);
+    //text.append("\n");
     textPane.setText(text.toString());
     textPane.repaint();
   }
