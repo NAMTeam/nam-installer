@@ -17,14 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class CleanitolPanel extends Box implements ActionListener, FileSearcher {
 
   private JButton startButton, deleteButton, backupButton;
-  private StringBuffer text;
-  private JTextPane textPane;
+  private JTextArea textArea;
 
   public CleanitolPanel(){
     this(true);
@@ -46,16 +45,15 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
       this.add(startButtonBox);
     }
 
-    text = new StringBuffer();
-    textPane = new JTextPane();
-    textPane.setEditable(false);
-    //textPane.setOpaque(false);
-    textPane.setForeground(Settings.getColor("textfield.text"));
-    textPane.setBackground(Settings.getColor("textfield.back"));
+    textArea = new JTextArea();
+    textArea.setEditable(false);
+    //textArea.setOpaque(false);
+    textArea.setForeground(Settings.getColor("textfield.text"));
+    textArea.setBackground(Settings.getColor("textfield.back"));
 
     JPanel p = new JPanel();
     p.setOpaque(false);
-    p.add(textPane);
+    p.add(textArea);
 
     JScrollPane scroll = new JScrollPane();
     scroll.getViewport().add(p);
@@ -97,9 +95,7 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
 
   public void found(File f){
     found.add(f);
-    text.append(f.toString());
-    text.append('\n');
-    textPane.setText(text.toString());
+    append(f.toString());
   }
 
   private int delete(){
@@ -141,6 +137,7 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
 
   private void error(){
     if (found != null && found.size() > 0){
+      StringBuffer text = new StringBuffer();
       text.append("\n-------------------------------------------\n");
       text.append(Settings.getString("cleanitol.error"));
       text.append("\n");
@@ -148,8 +145,13 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
         text.append(f.getPath());
         text.append("\n");
       }
-      textPane.setText(text.toString());
+      append(text.toString());
     }
+  }
+
+  private void append(String str){
+    textArea.append(str + "\n");
+    textArea.setCaretPosition(textArea.getDocument().getLength());
   }
 
   private Scanner scanner;
@@ -197,6 +199,7 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
   public void searchFinished() {
     startButton.setText(Settings.getString("cleanitol.done"));
     startButton.setEnabled(false);
+    StringBuffer text = new StringBuffer();
     text.append("-------------------------------------------\n");
     text.append(found.size() + " " + Settings.getString("cleanitol.found") + "\n");
     if (found.size() > 0){
@@ -204,7 +207,7 @@ public class CleanitolPanel extends Box implements ActionListener, FileSearcher 
       deleteButton.setEnabled(true);
       backupButton.setEnabled(true);
     }
-    textPane.setText(text.toString());
+    append(text.toString());
   }
 
   @Override

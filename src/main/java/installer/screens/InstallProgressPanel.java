@@ -15,14 +15,13 @@ import installer.tree.JarEntryNode;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 public class InstallProgressPanel extends Box implements ActionListener {
 
-  private JTextPane textPane;
-  private StringBuffer text;
+  private JTextArea textArea;
   private JButton startButton;
 
   public InstallProgressPanel(){
@@ -33,20 +32,18 @@ public class InstallProgressPanel extends Box implements ActionListener {
     startButton.setOpaque(false);
     startButton.addActionListener(this);
 
-    text = new StringBuffer();
-
     Box startButtonBox = Box.createHorizontalBox();
     startButtonBox.add(startButton);
     startButtonBox.add(Box.createHorizontalGlue());
 
-    textPane = new JTextPane();
-    textPane.setEditable(false);
-    //textPane.setOpaque(false);
-    textPane.setForeground(Settings.getColor("textfield.text"));
-    textPane.setBackground(Settings.getColor("textfield.back"));
+    textArea = new JTextArea();
+    textArea.setEditable(false);
+    //textArea.setOpaque(false);
+    textArea.setForeground(Settings.getColor("textfield.text"));
+    textArea.setBackground(Settings.getColor("textfield.back"));
 
     JScrollPane scroll = new JScrollPane();
-    scroll.getViewport().add(textPane);
+    scroll.getViewport().add(textArea);
     scroll.getViewport().setOpaque(false);
     scroll.setOpaque(false);
 
@@ -110,12 +107,8 @@ public class InstallProgressPanel extends Box implements ActionListener {
   }
 
   private void append(String str){
-	//changes listing of progress from top-down to bottom-up, allowing user to see when things are finished without scrolling down. -Tarkus 20240111
-	text.insert(0, str + "\n");
-    //text.append(str);
-    //text.append("\n");
-    textPane.setText(text.toString());
-    textPane.repaint();
+    textArea.append(str + "\n");
+    textArea.setCaretPosition(textArea.getDocument().getLength());
   }
 
   @Override
