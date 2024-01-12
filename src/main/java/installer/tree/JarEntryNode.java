@@ -217,7 +217,16 @@ public class JarEntryNode extends DefaultMutableTreeNode  {
   public void setSelected(boolean sel, boolean dig){
     // first check selection capabilities
     switch(getSelection()){
-    case PARENT: sel = ((JarEntryNode)getParent()).isSelected(); break;
+    case PARENT:
+      if (!isExclusive()) {  // exclusion groups remain selectable
+        sel = ((JarEntryNode)getParent()).isSelected();
+      } else {
+        // exclusive button
+        if (!((JarEntryNode)getParent()).isSelected()) {
+          sel = false;
+        }
+      }
+      break;
     case ALWAYS: if (!sel) return;
     case NEVER: if (sel) return;
     default: ;
@@ -271,6 +280,12 @@ public class JarEntryNode extends DefaultMutableTreeNode  {
 
   public boolean isSelected() {
     return selected;
+  }
+
+  public boolean isClickable(boolean ignoreOwnSelection) {
+    // mandatory radio buttons remain clickable if parent is selected
+    return getSelection() == SelectionCapability.DEFAULT && (ignoreOwnSelection || !(isExclusive() && isSelected())) ||
+      getSelection() == SelectionCapability.PARENT && isExclusive() && ((JarEntryNode)getParent()).isSelected() && (ignoreOwnSelection || !isSelected());
   }
 
   public boolean allowsSubfolders(){

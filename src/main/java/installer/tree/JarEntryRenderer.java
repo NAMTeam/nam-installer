@@ -76,7 +76,7 @@ public class JarEntryRenderer {
     //  renderLabel.setBorder(new LineBorder(selectedColor));
     //}
     renderCheck.setSelected(node.isSelected());
-    renderCheck.setEnabled(node.getSelection() == SelectionCapability.DEFAULT);
+    renderCheck.setEnabled(node.isClickable(true));
     if (node.icon == null){
       if (node.isLeaf()) {
         renderIcon.setIcon(UIManager.getIcon("Tree.leafIcon"));
@@ -95,7 +95,7 @@ public class JarEntryRenderer {
   }
 
   public void click(int x, int y){
-    if (renderCheck.getBounds().contains(x, y)){
+    if (renderCheck.getBounds().contains(x, y) && node.isClickable(false)) {
       node.setSelected(!node.isSelected());
       if (node.getParent() != null){
         ((JarEntryNode)node.getParent()).checkSelection();
