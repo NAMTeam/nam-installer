@@ -113,7 +113,7 @@ public class JarEntryNode extends DefaultMutableTreeNode  {
       } else if (!name.endsWith(".txt")){
         if (entry.isDirectory()){
           if (name.startsWith("@")){  // originally this was the `$` character
-            index = Integer.parseInt(name.substring(1,2));
+            index = Integer.parseInt(name.substring(1,2), 36);  // allows single character [0-9a-z] (case insensitive)
             name = name.substring(2);
           }
           if (name.endsWith("#")){
