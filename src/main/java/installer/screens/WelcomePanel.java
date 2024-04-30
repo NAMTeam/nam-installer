@@ -52,7 +52,7 @@ public class WelcomePanel extends Box {
 
     Box textBox = Box.createHorizontalBox();
     textBox.add(Box.createHorizontalStrut(5));
-    textBox.add(text);
+    textBox.add(new JScrollPane(text));
     textBox.add(Box.createHorizontalStrut(5));
 
     this.add(Box.createVerticalStrut(3));
