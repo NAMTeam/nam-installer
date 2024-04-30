@@ -2,7 +2,7 @@ name := "NAM-installer"
 
 organization := "com.sc4nam"
 
-version := "47.0.3"
+version := "47.0.4"
 
 javacOptions ++= Seq(
   "--release", "8",
