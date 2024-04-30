@@ -9,6 +9,7 @@ import installer.JarProperties;
 import installer.mainframe.InstallerTabs;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.DefaultEditorKit;
@@ -32,6 +33,22 @@ public class WelcomePanel extends Box {
     }
     text.setEditable(false);
     text.setBorder(new TitledBorder(new LineBorder(Settings.getColor("default.dark")), ""));
+    text.addHyperlinkListener(new HyperlinkListener() {
+      @Override
+      public void hyperlinkUpdate(HyperlinkEvent e) {
+        if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+          try {
+            if (java.awt.Desktop.isDesktopSupported()) {
+              java.awt.Desktop.getDesktop().browse(e.getURL().toURI());
+            } else {
+              System.err.println("Cannot open hyperlink " + e.getURL());
+            }
+          } catch(java.net.URISyntaxException | java.io.IOException ex) {
+            System.err.println("Cannot open hyperlink " + e.getURL());
+          }
+        }
+      }
+    });
 
     Box textBox = Box.createHorizontalBox();
     textBox.add(Box.createHorizontalStrut(5));
